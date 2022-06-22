@@ -1,7 +1,11 @@
 package runnables;
 
 class MyWorker implements Runnable {
-  public boolean stop = false;
+  public volatile boolean stop = getFalse();
+  public boolean getFalse() {
+    System.out.println("Instance init: " + Thread.currentThread().getName());
+    return false;
+  }
   @Override
   public void run() {
     System.out.println(Thread.currentThread().getName() +
