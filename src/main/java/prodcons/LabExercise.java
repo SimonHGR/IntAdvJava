@@ -9,6 +9,11 @@ class Producer implements Runnable {
     //   set the data to { index, index }
     // put that item into the queue (what do we do after put?)
   // print "finished"
+
+  // items should { 0, 0 } then { 1, 1 }
+  // create (locally) {-1, 0} first...
+  // then change it to {0, 0}, then put it.
+  // and proceed with the incremeting index...
 }
 
 class Consumer implements Runnable {
