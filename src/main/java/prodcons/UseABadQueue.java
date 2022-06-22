@@ -31,7 +31,10 @@ class BadQueue<T> {
         rendezvous.wait();
       }
       data[count++] = t;
-      rendezvous.notify();
+// unsafe functionally in multi-producer/consumer/CPU situations
+//      rendezvous.notify();
+// Non-scalable with large numbers of threads
+      rendezvous.notifyAll();
     }
   }
 
@@ -45,7 +48,8 @@ class BadQueue<T> {
       // potentially moving a waiting thread from
       // "blocked waiting for notification (pillow shaking)" to
       // "blocked waiting for "key"
-      rendezvous.notify();
+//      rendezvous.notify();
+      rendezvous.notifyAll();
       return rv;
     }
   }
